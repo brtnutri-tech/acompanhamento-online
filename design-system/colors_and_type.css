@@ -1,0 +1,262 @@
+/* =========================================================================
+   Diogo Brito · Nutricionista — Design Tokens
+   Colors, type, spacing, radii, shadows, motion.
+   Import together with fonts/fonts.css.
+   ========================================================================= */
+
+@import url('./fonts/fonts.css');
+
+:root {
+  /* ---- Brand core palette ---- */
+  --brand-green:       #80A422;   /* primary — verde folha */
+  --brand-green-600:   #6E8F1D;
+  --brand-green-700:   #5E7A16;
+  --brand-green-800:   #4B6211;
+  --brand-green-500:   #80A422;
+  --brand-green-400:   #9AB84A;
+  --brand-green-300:   #B6CD74;
+  --brand-green-200:   #D3DFA5;
+  --brand-green-100:   #E9EFCE;
+  --brand-green-50:    #F5F7E8;
+
+  --brand-red:         #9A2323;   /* accent — vermelho fruta */
+  --brand-red-700:     #7E1B1B;
+  --brand-red-600:     #8C1F1F;
+  --brand-red-500:     #9A2323;
+  --brand-red-400:     #B24646;
+  --brand-red-300:     #C97272;
+  --brand-red-200:     #E0A4A4;
+  --brand-red-100:     #F1CFCF;
+  --brand-red-50:      #FBEEEE;
+
+  /* ---- Neutrals ---- */
+  --white:        #FFFFFF;
+  --offwhite:     #FAFAF8;        /* background padrão para superfícies amplas */
+  --stone-50:     #F6F5F1;
+  --stone-100:    #EDEBE4;
+  --stone-200:    #DDDAD0;
+  --stone-300:    #C3BFB1;
+  --stone-400:    #9E9A8B;
+  --stone-500:    #78746A;
+  --stone-600:    #55524A;
+  --stone-700:    #3B3933;
+  --stone-800:    #262521;
+  --stone-900:    #14130F;
+  --black:        #0B0A08;
+
+  /* ---- Semantic — surface / foreground ---- */
+  --bg:           var(--offwhite);
+  --bg-raised:    var(--white);
+  --bg-inset:     var(--stone-50);
+  --bg-brand:     var(--brand-green);
+  --bg-brand-soft:var(--brand-green-50);
+  --bg-accent:    var(--brand-red);
+  --bg-accent-soft:var(--brand-red-50);
+
+  --fg:           var(--stone-800);   /* texto principal */
+  --fg-muted:     var(--stone-600);   /* texto secundário / legendas */
+  --fg-subtle:    var(--stone-500);   /* captions, metadata */
+  --fg-inverse:   var(--white);
+  --fg-brand:     var(--brand-green-700);
+  --fg-accent:    var(--brand-red);
+
+  --border:       var(--stone-200);
+  --border-strong:var(--stone-300);
+  --border-brand: var(--brand-green-300);
+
+  /* ---- Semantic — status ---- */
+  --success:      var(--brand-green-600);
+  --success-soft: var(--brand-green-50);
+  --danger:       var(--brand-red);
+  --danger-soft:  var(--brand-red-50);
+  --warn:         #C98A1B;
+  --warn-soft:    #FAF1DF;
+  --info:         #3A6EA5;
+  --info-soft:    #E7EFF7;
+
+  /* ---- Type families ---- */
+  --font-display: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---- Type scale (fluid) ---- */
+  --fs-xs:    0.75rem;    /* 12 */
+  --fs-sm:    0.875rem;   /* 14 */
+  --fs-base:  1rem;       /* 16 */
+  --fs-md:    1.125rem;   /* 18 */
+  --fs-lg:    1.25rem;    /* 20 */
+  --fs-xl:    1.5rem;     /* 24 */
+  --fs-2xl:   1.875rem;   /* 30 */
+  --fs-3xl:   2.25rem;    /* 36 */
+  --fs-4xl:   3rem;       /* 48 */
+  --fs-5xl:   3.75rem;    /* 60 */
+  --fs-6xl:   4.75rem;    /* 76 */
+
+  /* ---- Tracking ---- */
+  --tracking-tight:  -0.02em;
+  --tracking-snug:   -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:    0.02em;
+  --tracking-eyebrow: 0.14em;
+
+  /* ---- Leading ---- */
+  --leading-tight:  1.08;
+  --leading-snug:   1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.65;
+
+  /* ---- Weights ---- */
+  --w-regular: 400;
+  --w-medium:  500;
+  --w-semi:    600;
+  --w-bold:    700;
+  --w-extra:   800;
+
+  /* ---- Spacing (4-px base) ---- */
+  --s-0:  0;
+  --s-1:  0.25rem;   /*  4 */
+  --s-2:  0.5rem;    /*  8 */
+  --s-3:  0.75rem;   /* 12 */
+  --s-4:  1rem;      /* 16 */
+  --s-5:  1.25rem;   /* 20 */
+  --s-6:  1.5rem;    /* 24 */
+  --s-8:  2rem;      /* 32 */
+  --s-10: 2.5rem;    /* 40 */
+  --s-12: 3rem;      /* 48 */
+  --s-16: 4rem;      /* 64 */
+  --s-20: 5rem;      /* 80 */
+  --s-24: 6rem;      /* 96 */
+  --s-32: 8rem;      /* 128 */
+
+  /* ---- Radii — suaves, acolhedores ---- */
+  --r-xs:    4px;
+  --r-sm:    8px;
+  --r-md:    12px;
+  --r-lg:    16px;
+  --r-xl:    24px;
+  --r-2xl:   32px;
+  --r-pill:  999px;
+
+  /* ---- Shadows — discretos, nunca coloridos ---- */
+  --shadow-xs: 0 1px 2px rgba(20, 19, 15, 0.05);
+  --shadow-sm: 0 1px 3px rgba(20, 19, 15, 0.06), 0 1px 2px rgba(20, 19, 15, 0.04);
+  --shadow-md: 0 4px 12px rgba(20, 19, 15, 0.07), 0 2px 4px rgba(20, 19, 15, 0.04);
+  --shadow-lg: 0 12px 28px rgba(20, 19, 15, 0.09), 0 4px 8px rgba(20, 19, 15, 0.04);
+  --shadow-xl: 0 24px 48px rgba(20, 19, 15, 0.12), 0 8px 16px rgba(20, 19, 15, 0.05);
+  --shadow-inset: inset 0 1px 2px rgba(20, 19, 15, 0.05);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:       cubic-bezier(0.7, 0, 0.84, 0);
+  --dur-fast:      120ms;
+  --dur-base:      200ms;
+  --dur-slow:      320ms;
+  --dur-slower:    480ms;
+
+  /* ---- Layout ---- */
+  --container-sm:  640px;
+  --container-md:  820px;
+  --container-lg:  1080px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+}
+
+/* =========================================================================
+   Base element styles — applied when you import this file into a page.
+   ========================================================================= */
+
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--leading-normal);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--brand-green-200);
+  color: var(--stone-900);
+}
+
+/* Headings — Syne, tight tracking, tight leading */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-display);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--fg);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1, .h1 { font-size: clamp(2.5rem, 5vw + 1rem, var(--fs-6xl));  font-weight: 800; }
+h2, .h2 { font-size: clamp(2rem,  3vw + 1rem, var(--fs-4xl));   font-weight: 700; }
+h3, .h3 { font-size: var(--fs-2xl); font-weight: 700; }
+h4, .h4 { font-size: var(--fs-xl);  font-weight: 600; letter-spacing: var(--tracking-snug); }
+h5, .h5 { font-size: var(--fs-lg);  font-weight: 600; letter-spacing: var(--tracking-snug); }
+h6, .h6 { font-size: var(--fs-md);  font-weight: 600; letter-spacing: var(--tracking-snug); }
+
+/* Eyebrows / small caps labels */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--w-semi);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+
+/* Body */
+p, .p {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--leading-relaxed);
+  color: var(--fg);
+  margin: 0;
+  text-wrap: pretty;
+}
+.lede { font-size: var(--fs-md); color: var(--fg-muted); line-height: var(--leading-relaxed); }
+.small, small { font-size: var(--fs-sm); color: var(--fg-muted); }
+.caption { font-size: var(--fs-xs); color: var(--fg-subtle); letter-spacing: var(--tracking-wide); }
+
+/* Links */
+a {
+  color: var(--fg-brand);
+  text-decoration-color: color-mix(in oklab, var(--brand-green) 40%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--brand-green-800); text-decoration-color: currentColor; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--s-8) 0;
+}
+
+code, kbd, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* Focus ring — consistent, high-contrast, brand-green */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-green);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

@@ -1,0 +1,7 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160" role="img" aria-label="Diogo Brito · Nutricionista">
+  
+  <text class="name" x="0" y="70" font-size="64">Diogo Brito</text>
+  <circle class="dot" cx="18" cy="118" r="3.5"></circle>
+  <text class="role" x="34" y="124" font-size="16">NUTRICIONISTA</text>
+</svg>
