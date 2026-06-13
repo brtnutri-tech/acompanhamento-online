@@ -64,8 +64,8 @@
   var cardsEl = document.getElementById('tb-cards');
   cardsEl.innerHTML =
     buildCard({ data: DATA.consultoria,   variant: 'neutra' }) +
-    buildCard({ data: DATA.consistencia,  variant: 'consistencia' }) +
-    buildCard({ data: DATA.essencial,     variant: 'essencial' });
+    buildCard({ data: DATA.essencial,     variant: 'essencial' }) +
+    buildCard({ data: DATA.consistencia,  variant: 'consistencia' });
 
   var footerEl = document.getElementById('tb-footer');
   footerEl.textContent = DATA.rodape || '';

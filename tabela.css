@@ -109,22 +109,17 @@ html, body { height: 100%; }
 .tb-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.tb-wordmark {
-  height: 56px;
-  width: auto;
-  display: block;
+  justify-content: center;
 }
 .tb-eyebrow {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: var(--w-semi);
-  letter-spacing: var(--tracking-eyebrow);
+  font-size: 30px;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fg-brand);
+  text-align: center;
 }
 
 /* ---- Cards grid ---- */
