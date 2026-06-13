@@ -73,23 +73,6 @@ body {
 .eyebrow-line { display: inline-flex; align-items: center; gap: 12px; }
 .eyebrow-line::before { content: ""; width: 24px; height: 1.5px; background: var(--brand-green); }
 
-/* numerais de capítulo (decorativos, indicam progresso) */
-.abertura .section-head::before,
-.support .section-head::before,
-.journey .section-head::before,
-.quiz-section .section-head::before,
-.plans-section .section-head::before,
-.faq-section .section-head::before {
-  font-family: var(--font-display); font-weight: 700; font-size: 13px;
-  letter-spacing: 0.14em; display: block; margin-bottom: 18px; color: var(--stone-400);
-}
-.abertura .section-head::before { content: "01 · 06"; }
-.support .section-head::before { content: "02 · 06"; color: rgba(255,255,255,0.55); }
-.journey .section-head::before { content: "03 · 06"; }
-.quiz-section .section-head::before { content: "04 · 06"; }
-.plans-section .section-head::before { content: "05 · 06"; }
-.faq-section .section-head::before { content: "06 · 06"; }
-
 /* ---- Botão primário ---- */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 12px;
