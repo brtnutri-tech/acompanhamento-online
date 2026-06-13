@@ -235,6 +235,22 @@
     update();
   })();
 
+  /* ---- Pulse 1x nos CTAs de plano quando entram em viewport ---- */
+  (function () {
+    var ctas = document.querySelectorAll('.plan-cta');
+    if (!ctas.length || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('pulse-once');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.55 });
+    Array.prototype.forEach.call(ctas, function (el) { io.observe(el); });
+  })();
+
   /* ---- Chapter rail — destaca o capítulo visível ---- */
   (function () {
     var rail = document.querySelector('.chapter-rail');
