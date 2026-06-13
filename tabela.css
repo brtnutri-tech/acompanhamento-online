@@ -93,11 +93,11 @@ html, body { height: 100%; }
     radial-gradient(ellipse at 20% 0%, var(--brand-green-50) 0%, transparent 55%),
     radial-gradient(ellipse at 100% 100%, var(--brand-red-50) 0%, transparent 50%),
     var(--offwhite);
-  padding: 56px 64px 48px;
+  padding: 56px 56px 44px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
   position: relative;
   overflow: hidden;
   font-family: var(--font-body);
@@ -113,7 +113,7 @@ html, body { height: 100%; }
 .tb-eyebrow {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 30px;
+  font-size: 42px;
   font-weight: var(--w-bold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -125,9 +125,9 @@ html, body { height: 100%; }
 .tb-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 22px;
+  gap: 18px;
   flex: 1;
-  align-items: stretch;   /* cartões esticam até a mesma altura */
+  align-items: stretch;
 }
 
 .tb-card {
@@ -135,12 +135,13 @@ html, body { height: 100%; }
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: 22px;
-  padding: 36px 24px 28px;
+  padding: 36px 22px 28px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   box-shadow: var(--shadow-sm);
+  text-align: center;       /* tudo centralizado dentro do cartão */
 }
 
 /* Variante: NEUTRA (Sessão de Direcionamento) */
@@ -188,10 +189,10 @@ html, body { height: 100%; }
   background: var(--brand-red);
   color: var(--white);
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: var(--w-bold);
   letter-spacing: 0.18em;
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: var(--r-pill);
   white-space: nowrap;
   box-shadow: var(--shadow-sm);
@@ -202,7 +203,7 @@ html, body { height: 100%; }
 .tb-tag {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: var(--w-bold);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -211,50 +212,54 @@ html, body { height: 100%; }
 /* ---- Título e subtítulo ---- */
 .tb-title {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 32px;
   font-weight: var(--w-bold);
   letter-spacing: -0.01em;
-  line-height: 1.1;
+  line-height: 1.12;
   margin: 0;
-  min-height: 62px;
+  min-height: 72px;
 }
 .tb-subtitulo {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 14.5px;
+  font-size: 17px;
   color: var(--fg-muted);
   line-height: 1.45;
   margin: 0;
-  min-height: 58px;
+  min-height: 78px;
 }
 
 /* ---- Itens ---- */
 .tb-itens {
   list-style: none;
-  margin: 4px 0 0;
+  margin: 8px auto 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 16px;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
 }
 .tb-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-body);
-  font-size: 14.5px;
+  font-size: 18.5px;
   line-height: 1.4;
   color: var(--stone-800);
+  text-align: left;
 }
 .tb-item-icon {
-  flex: 0 0 18px;
+  flex: 0 0 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
+  margin-top: 3px;
 }
-.tb-check { width: 18px; height: 18px; }
-.tb-no    { width: 18px; height: 18px; color: var(--stone-400); }
+.tb-check { width: 22px; height: 22px; }
+.tb-no    { width: 22px; height: 22px; color: var(--stone-400); }
 .tb-item-text { flex: 1; }
 
 .tb-item-negrito .tb-item-text { font-weight: var(--w-semi); }
@@ -262,72 +267,83 @@ html, body { height: 100%; }
 .tb-item-off { color: var(--stone-500); }
 .tb-item-off s { text-decoration: line-through; text-decoration-color: var(--stone-400); }
 
-/* ---- Caixa do preço — ancorada no rodapé do cartão ---- */
+/* ---- Caixa do preço — ancorada no rodapé do cartão e centralizada ---- */
 .tb-precobox {
-  margin-top: auto;           /* empurra o preço pra baixo */
+  margin-top: auto;
   padding-top: 18px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  align-items: center;     /* centraliza o bloco do preço */
+  gap: 7px;
 }
 
 /* Preço com hierarquia: prefixo+moeda menores que o número */
 .tb-preco {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
+  justify-content: center;
+  gap: 3px;
   line-height: 1;
   margin: 0;
 }
 .tb-preco-prefix {
   font-family: var(--font-display);
-  font-size: 23px;
+  font-size: 30px;
   font-weight: var(--w-bold);
   letter-spacing: -0.01em;
-  margin-bottom: 5px;   /* sobe um pouco pra alinhar visualmente */
+  margin-bottom: 7px;
 }
 .tb-preco-cur {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 28px;
   font-weight: var(--w-extra);
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 }
 .tb-preco-num {
   font-family: var(--font-display);
-  font-size: 54px;
+  font-size: 76px;
   font-weight: var(--w-extra);
   letter-spacing: -0.025em;
   line-height: 1;
 }
 
+.tb-recorrencia {
+  margin: 4px 0 0;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: var(--w-semi);
+  color: var(--stone-700);
+  line-height: 1.3;
+  max-width: 250px;
+}
 .tb-subpreco {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--fg-muted);
   margin: 0;
 }
 
 /* ---- Rodapé da peça (duas linhas) ---- */
 .tb-footer {
-  padding-top: 20px;
+  padding-top: 22px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   text-align: center;
 }
 .tb-footer-linha1 {
   font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: var(--w-medium);
+  font-size: 19px;
+  font-weight: var(--w-semi);
   color: var(--stone-700);
   line-height: 1.4;
 }
 .tb-footer-linha2 {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--fg-muted);
 }
 

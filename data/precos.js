@@ -48,6 +48,7 @@ window.PRECOS_TABELA = {
     titulo: '180 dias de acompanhamento',
     subtitulo: 'Pra quem quer emagrecer e aprender a sustentar o resultado depois.',
     preco: '6× R$199',
+    recorrencia: 'Recorrência mensal, não compromete o limite do cartão',
     subPreco: 'ou R$1.150 à vista no Pix',
     selo: 'MAIS ESCOLHIDO',
     itens: [
@@ -56,8 +57,8 @@ window.PRECOS_TABELA = {
       '6 Check-ins de evolução (peso, medidas e avanços)',
       '3 Videochamadas + 4 Botões SOS',
       '10 Avaliações físicas no período',
-      { texto: '+ 2 Av. Físicas pra você presentear alguém', negrito: true },
-      { texto: 'Prescrição de treino com personal da equipe', negrito: true }
+      '+ 2 Av. Físicas pra você presentear alguém',
+      'Prescrição de treino com personal da equipe'
     ]
   },
 
@@ -69,6 +70,7 @@ window.PRECOS_TABELA = {
     titulo: '90 dias de acompanhamento',
     subtitulo: 'Pra começar com estrutura real, com suporte semanal desde o primeiro dia.',
     preco: '3× R$269',
+    recorrencia: 'Recorrência mensal, não compromete o limite do cartão',
     subPreco: 'ou R$780 à vista no Pix',
     itens: [
       'Plano alimentar personalizado',

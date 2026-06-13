@@ -55,6 +55,7 @@
     var variant = opts.variant;
 
     var seloHtml = data.selo ? '<span class="tb-selo">' + data.selo + '</span>' : '';
+    var recorrenciaHtml = data.recorrencia ? '<p class="tb-recorrencia">' + data.recorrencia + '</p>' : '';
     var subPrecoHtml = data.subPreco ? '<p class="tb-subpreco">' + data.subPreco + '</p>' : '';
     var itensHtml = data.itens.map(buildCheckItem).join('');
     var riscadosHtml = (data.itensRiscados || []).map(buildRiscadoItem).join('');
@@ -68,6 +69,7 @@
         '<ul class="tb-itens">' + itensHtml + riscadosHtml + '</ul>' +
         '<div class="tb-precobox">' +
           '<p class="tb-preco">' + formatPreco(data.preco) + '</p>' +
+          recorrenciaHtml +
           subPrecoHtml +
         '</div>' +
       '</article>';
