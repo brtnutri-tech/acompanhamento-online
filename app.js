@@ -211,13 +211,15 @@
     });
   })();
 
-  /* ---- Botão flutuante WhatsApp — visível na página toda ---- */
+  /* ---- Botão flutuante WhatsApp + Topbar sticky — aparecem após scroll ---- */
   (function () {
     var btn = document.getElementById('wa-float');
-    if (!btn) return;
+    var bar = document.getElementById('topbar');
+    if (!btn && !bar) return;
     function update() {
-      if (window.scrollY > 140) btn.classList.add('is-visible');
-      else btn.classList.remove('is-visible');
+      var show = window.scrollY > 140;
+      if (btn) btn.classList.toggle('is-visible', show);
+      if (bar) bar.classList.toggle('is-visible', show);
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
