@@ -12,27 +12,31 @@
      e cole logo abaixo. Pra tirar item, apague a linha inteira.
    - Depois de salvar, rode a página /tabela.html e baixe a imagem nova.
 
+   ITENS EM NEGRITO: use o formato  { texto: 'Texto aqui', negrito: true }
+   ITENS SIMPLES: use só a string   'Texto aqui'
+
    Dúvida? Pergunte ao Claude que ele te ajuda.
    ============================================================ */
 
 window.PRECOS_TABELA = {
 
   // ============================================================
-  // CARTÃO 1 — CONSULTORIA ESTRATÉGICA
+  // CARTÃO 1 — SESSÃO DE DIRECIONAMENTO
   // ============================================================
   consultoria: {
-    tag: 'CONSULTORIA ESTRATÉGICA',           // rótulo pequeno no topo
-    titulo: 'Consultoria Estratégica',
-    subtitulo: 'Sessão 1x1 com o nutri por 1 hora',
-    preco: 'R$500',                            // preço grande
-    subPreco: '',                              // texto pequeno embaixo do preço (vazio aqui)
+    tag: 'SESSÃO DE DIRECIONAMENTO',
+    titulo: 'Sessão de Direcionamento',
+    subtitulo: 'Videochamada com o nutri por 1 hora',
+    preco: 'R$500',
+    subPreco: '',
     itens: [
       'Análise completa do seu caso na sessão de 1 hora',
       'Plano alimentar inicial personalizado',
       'Diagnóstico Estratégico do seu Caso em PDF',
       '7 dias de suporte via WhatsApp',
       'Protocolo de suplementação, quando indicado',
-      'Cashback de R$200, válido pra abater em qualquer um dos planos em até 10 dias após a consulta'
+      // O <strong> deixa "Cashback de R$200" em negrito dentro do item
+      '<strong>Cashback de R$200</strong>, válido pra abater em qualquer um dos planos em até 10 dias após a consulta'
     ]
   },
 
@@ -45,15 +49,15 @@ window.PRECOS_TABELA = {
     subtitulo: 'Pra quem quer emagrecer e aprender a sustentar o resultado depois.',
     preco: '6× R$199',
     subPreco: 'ou R$1.150 à vista no Pix',
-    selo: 'MAIS ESCOLHIDO',                   // selo vermelho. Deixe vazio '' pra tirar o selo.
+    selo: 'MAIS ESCOLHIDO',
     itens: [
       'Plano alimentar personalizado',
       'Suporte semanal',
       '6 Check-ins de evolução (peso, medidas e avanços)',
       '3 Videochamadas + 4 Botões SOS',
       '10 Avaliações físicas no período',
-      '+ 2 pra você presentear quem quiser',
-      'Prescrição de treino com personal da equipe'
+      { texto: '+ 2 Av. Físicas pra você presentear alguém', negrito: true },
+      { texto: 'Prescrição de treino com personal da equipe', negrito: true }
     ]
   },
 
@@ -73,16 +77,20 @@ window.PRECOS_TABELA = {
       '2 Videochamadas + 1 Botão SOS',
       '3 Avaliações físicas no período'
     ],
-    // Itens RISCADOS (aparecem em cinza com linha em cima):
-    // mostram o que NÃO está incluído nesse plano.
+    // Itens RISCADOS: mostram o que NÃO está incluído nesse plano.
     itensRiscados: [
+      '+ 2 pra você presentear quem quiser',
       'Prescrição de treino com personal da equipe'
     ]
   },
 
   // ============================================================
   // RODAPÉ DA PEÇA
+  // Linha 1: texto principal. Linha 2: nota menor embaixo.
   // ============================================================
-  rodape: 'Diogo Brito Nutricionista • CRN/1-15723'
+  rodape: {
+    linha1: 'Acompanhamento premium para quem já cansou de recomeçar sozinho.',
+    linha2: 'Tabela vigente até julho/2026'
+  }
 
 };

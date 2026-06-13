@@ -1,7 +1,7 @@
 /* ============================================================
    Tabela de preços · uso interno · Diogo Brito
    Peça 1080x1350 (4:5, WhatsApp).
-   Cartões: Consultoria (neutro) · Consistência (vermelho) · Essencial (verde).
+   Cartões: Sessão de Direcionamento (neutro) · Essencial (verde) · Consistência (vermelho).
    ============================================================ */
 
 html, body { height: 100%; }
@@ -75,14 +75,12 @@ html, body { height: 100%; }
 .tb-stage-scaler {
   position: relative;
   flex-shrink: 0;
-  /* width/height visuais setados pelo JS conforme a tela */
 }
 .tb-stage-scaler > .tb-frame {
   position: absolute;
   top: 0;
   left: 0;
   transform-origin: top left;
-  /* transform: scale(s) aplicado pelo JS */
 }
 
 /* ============================================================
@@ -95,17 +93,18 @@ html, body { height: 100%; }
     radial-gradient(ellipse at 20% 0%, var(--brand-green-50) 0%, transparent 55%),
     radial-gradient(ellipse at 100% 100%, var(--brand-red-50) 0%, transparent 50%),
     var(--offwhite);
-  padding: 64px 64px 56px;
+  padding: 56px 64px 48px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   position: relative;
   overflow: hidden;
   font-family: var(--font-body);
   color: var(--fg);
 }
 
+/* ---- Cabeçalho ---- */
 .tb-header {
   display: flex;
   align-items: center;
@@ -122,13 +121,13 @@ html, body { height: 100%; }
   text-align: center;
 }
 
-/* ---- Cards grid ---- */
+/* ---- Cards grid — todos com a mesma altura ---- */
 .tb-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 22px;
   flex: 1;
-  align-items: center;
+  align-items: stretch;   /* cartões esticam até a mesma altura */
 }
 
 .tb-card {
@@ -136,44 +135,49 @@ html, body { height: 100%; }
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: 22px;
-  padding: 36px 26px 32px;
+  padding: 36px 24px 28px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   box-shadow: var(--shadow-sm);
 }
 
-/* Variante: NEUTRA (Consultoria) */
-.tb-card--neutra {
-  border-color: var(--stone-200);
-}
-.tb-card--neutra .tb-tag { color: var(--stone-600); }
+/* Variante: NEUTRA (Sessão de Direcionamento) */
+.tb-card--neutra { border-color: var(--stone-200); }
+.tb-card--neutra .tb-tag   { color: var(--stone-600); }
 .tb-card--neutra .tb-title { color: var(--stone-900); }
-.tb-card--neutra .tb-preco { color: var(--stone-900); }
 .tb-card--neutra .tb-check { color: var(--stone-600); }
-
-/* Variante: CONSISTÊNCIA (vermelho-vinho) */
-.tb-card--consistencia {
-  border-color: var(--brand-red);
-  border-width: 2.5px;
-  background: linear-gradient(180deg, var(--brand-red-50) 0%, var(--white) 25%);
-  box-shadow: var(--shadow-md);
-}
-.tb-card--consistencia .tb-tag { color: var(--brand-red); }
-.tb-card--consistencia .tb-title { color: var(--brand-red-700); }
-.tb-card--consistencia .tb-preco { color: var(--brand-red); }
-.tb-card--consistencia .tb-check { color: var(--brand-red); }
+.tb-card--neutra .tb-preco-num,
+.tb-card--neutra .tb-preco-prefix,
+.tb-card--neutra .tb-preco-cur { color: var(--stone-900); }
 
 /* Variante: ESSENCIAL (verde-oliva) */
 .tb-card--essencial {
   border-color: var(--brand-green);
   border-width: 2px;
-  background: linear-gradient(180deg, var(--brand-green-50) 0%, var(--white) 25%);
+  background: linear-gradient(180deg, var(--brand-green-50) 0%, var(--white) 22%);
 }
-.tb-card--essencial .tb-tag { color: var(--brand-green-700); }
+.tb-card--essencial .tb-tag   { color: var(--brand-green-700); }
 .tb-card--essencial .tb-title { color: var(--brand-green-800); }
-.tb-card--essencial .tb-preco { color: var(--brand-green-700); }
 .tb-card--essencial .tb-check { color: var(--brand-green); }
+.tb-card--essencial .tb-preco-num,
+.tb-card--essencial .tb-preco-prefix,
+.tb-card--essencial .tb-preco-cur { color: var(--brand-green-700); }
+
+/* Variante: CONSISTÊNCIA (vermelho-vinho) */
+.tb-card--consistencia {
+  border-color: var(--brand-red);
+  border-width: 2.5px;
+  background: linear-gradient(180deg, var(--brand-red-50) 0%, var(--white) 22%);
+  box-shadow: var(--shadow-md);
+}
+.tb-card--consistencia .tb-tag   { color: var(--brand-red); }
+.tb-card--consistencia .tb-title { color: var(--brand-red-700); }
+.tb-card--consistencia .tb-check { color: var(--brand-red); }
+.tb-card--consistencia .tb-preco-num,
+.tb-card--consistencia .tb-preco-prefix,
+.tb-card--consistencia .tb-preco-cur { color: var(--brand-red); }
 
 /* ---- Selo MAIS ESCOLHIDO ---- */
 .tb-selo {
@@ -198,7 +202,7 @@ html, body { height: 100%; }
 .tb-tag {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: var(--w-bold);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -207,95 +211,128 @@ html, body { height: 100%; }
 /* ---- Título e subtítulo ---- */
 .tb-title {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: var(--w-bold);
   letter-spacing: -0.01em;
   line-height: 1.1;
   margin: 0;
-  min-height: 66px;
+  min-height: 62px;
 }
 .tb-subtitulo {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 15.5px;
+  font-size: 14.5px;
   color: var(--fg-muted);
   line-height: 1.45;
   margin: 0;
-  min-height: 60px;
-}
-
-/* ---- Caixa do preço ---- */
-.tb-precobox {
-  margin: 10px 0 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-height: 78px;
-}
-.tb-preco {
-  font-family: var(--font-display);
-  font-size: 48px;
-  font-weight: var(--w-extra);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin: 0;
-}
-.tb-subpreco {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--fg-muted);
-  margin: 0;
+  min-height: 58px;
 }
 
 /* ---- Itens ---- */
 .tb-itens {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 4px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
 }
 .tb-item {
   display: flex;
   align-items: flex-start;
-  gap: 11px;
+  gap: 10px;
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 14.5px;
   line-height: 1.4;
   color: var(--stone-800);
 }
 .tb-item-icon {
-  flex: 0 0 20px;
+  flex: 0 0 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: 2px;
 }
-.tb-check { width: 20px; height: 20px; }
-.tb-no { width: 20px; height: 20px; color: var(--stone-400); }
+.tb-check { width: 18px; height: 18px; }
+.tb-no    { width: 18px; height: 18px; color: var(--stone-400); }
 .tb-item-text { flex: 1; }
+
+.tb-item-negrito .tb-item-text { font-weight: var(--w-semi); }
 
 .tb-item-off { color: var(--stone-500); }
 .tb-item-off s { text-decoration: line-through; text-decoration-color: var(--stone-400); }
 
-/* ---- Rodapé da peça ---- */
-.tb-footer {
-  margin-top: auto;
-  padding-top: 16px;
+/* ---- Caixa do preço — ancorada no rodapé do cartão ---- */
+.tb-precobox {
+  margin-top: auto;           /* empurra o preço pra baixo */
+  padding-top: 18px;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Preço com hierarquia: prefixo+moeda menores que o número */
+.tb-preco {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  line-height: 1;
+  margin: 0;
+}
+.tb-preco-prefix {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: var(--w-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;   /* sobe um pouco pra alinhar visualmente */
+}
+.tb-preco-cur {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: var(--w-extra);
+  margin-bottom: 7px;
+}
+.tb-preco-num {
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: var(--w-extra);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.tb-subpreco {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+/* ---- Rodapé da peça (duas linhas) ---- */
+.tb-footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+.tb-footer-linha1 {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--w-medium);
+  color: var(--stone-700);
+  line-height: 1.4;
+}
+.tb-footer-linha2 {
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: var(--w-medium);
   color: var(--fg-muted);
-  letter-spacing: 0.02em;
-  text-align: center;
 }
 
 /* ============================================================
-   Responsivo da TOOLBAR (só do que o usuário vê na tela,
-   o frame em si nunca muda — sempre 1080x1350 pra captura).
+   Responsivo da TOOLBAR
    ============================================================ */
 @media (max-width: 480px) {
   .tb-toolbar-label { display: none; }
