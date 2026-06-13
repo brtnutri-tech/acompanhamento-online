@@ -211,18 +211,53 @@
     });
   })();
 
-  /* ---- Botão flutuante WhatsApp + Topbar sticky — aparecem após scroll ---- */
+  /* ---- Botão flutuante WhatsApp + Topbar sticky + barra de progresso ---- */
   (function () {
     var btn = document.getElementById('wa-float');
     var bar = document.getElementById('topbar');
-    if (!btn && !bar) return;
+    var storyBar = document.getElementById('story-progress-bar');
+    if (!btn && !bar && !storyBar) return;
+    var ticking = false;
     function update() {
-      var show = window.scrollY > 140;
+      var y = window.scrollY;
+      var show = y > 140;
       if (btn) btn.classList.toggle('is-visible', show);
       if (bar) bar.classList.toggle('is-visible', show);
+      if (storyBar) {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        storyBar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      }
+      ticking = false;
     }
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
     update();
+  })();
+
+  /* ---- Chapter rail — destaca o capítulo visível ---- */
+  (function () {
+    var rail = document.querySelector('.chapter-rail');
+    if (!rail || !('IntersectionObserver' in window)) return;
+    var links = rail.querySelectorAll('a[data-target]');
+    var map = {};
+    Array.prototype.forEach.call(links, function (a) {
+      var sec = document.getElementById(a.getAttribute('data-target'));
+      if (sec) map[a.getAttribute('data-target')] = a;
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          Array.prototype.forEach.call(links, function (a) { a.classList.remove('active'); });
+          var active = map[entry.target.id];
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    Array.prototype.forEach.call(links, function (a) {
+      var sec = document.getElementById(a.getAttribute('data-target'));
+      if (sec) io.observe(sec);
+    });
   })();
 
 })();
