@@ -25,8 +25,8 @@ window.PRECOS_TABELA = {
   // ============================================================
   consultoria: {
     tag: 'SESSÃO DE DIRECIONAMENTO',
-    titulo: 'Sessão de Direcionamento',
-    subtitulo: 'Videochamada com o nutri por 1 hora',
+    titulo: 'Consultoria Estratégica',
+    subtitulo: 'Videochamada de 1 hora com o nutri',
     preco: 'R$500',
     recorrencia: '1x no cartão ou Pix',
     subPreco: '',
@@ -59,7 +59,7 @@ window.PRECOS_TABELA = {
       '3 Videochamadas + 4 Botões SOS',
       '10 Avaliações físicas no período',
       '+ 2 Av. Físicas pra você presentear alguém',
-      'Prescrição de treino com personal da equipe'
+      'Prescrição de treino com a personal da equipe'
     ]
   },
 
@@ -83,7 +83,7 @@ window.PRECOS_TABELA = {
     // Itens RISCADOS: mostram o que NÃO está incluído nesse plano.
     itensRiscados: [
       '+ 2 pra você presentear quem quiser',
-      'Prescrição de treino com personal da equipe'
+      'Prescrição de treino com a personal da equipe'
     ]
   },
 
