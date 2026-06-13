@@ -9,22 +9,14 @@
 <meta name="theme-color" content="#80A422">
 
 <link rel="stylesheet" href="design-system/colors_and_type.css">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 
-<!-- ════════════════════ C · INDICADORES DE PROGRESSO ════════════════════ -->
+<!-- ════════════════════ C · BARRA DE PROGRESSO DE LEITURA ════════════════════ -->
 <div class="story-progress" aria-hidden="true"><div class="story-progress-bar" id="story-progress-bar"></div></div>
-<nav class="chapter-rail" aria-label="Capítulos da página">
-  <a href="#abertura" data-target="abertura"><span class="chapter-dot"></span><span class="chapter-label">Abertura</span></a>
-  <a href="#suporte"  data-target="suporte"><span class="chapter-dot"></span><span class="chapter-label">Suporte</span></a>
-  <a href="#jornada"  data-target="jornada"><span class="chapter-dot"></span><span class="chapter-label">Jornada</span></a>
-  <a href="#quiz"     data-target="quiz"><span class="chapter-dot"></span><span class="chapter-label">Quiz</span></a>
-  <a href="#planos"   data-target="planos"><span class="chapter-dot"></span><span class="chapter-label">Planos</span></a>
-  <a href="#faq"      data-target="faq"><span class="chapter-dot"></span><span class="chapter-label">Dúvidas</span></a>
-</nav>
 
-<!-- ════════════════════ 00 · TOPBAR — header sticky com foto + nome ════════════════════ -->
+<!-- ════════════════════ 00 · TOPBAR — header sticky com foto + dots de capítulo ════════════════════ -->
 <header class="topbar" id="topbar" role="banner">
   <div class="topbar-inner">
     <span class="topbar-photo">
@@ -34,6 +26,14 @@
       <strong class="topbar-name">Diogo Brito</strong>
       <span class="topbar-role">Nutricionista</span>
     </span>
+    <nav class="chapter-rail" aria-label="Capítulos da página">
+      <a href="#abertura" data-target="abertura" aria-label="Abertura"><span class="chapter-dot"></span></a>
+      <a href="#suporte"  data-target="suporte"  aria-label="Suporte"><span class="chapter-dot"></span></a>
+      <a href="#jornada"  data-target="jornada"  aria-label="Jornada"><span class="chapter-dot"></span></a>
+      <a href="#quiz"     data-target="quiz"     aria-label="Quiz"><span class="chapter-dot"></span></a>
+      <a href="#planos"   data-target="planos"   aria-label="Planos"><span class="chapter-dot"></span></a>
+      <a href="#faq"      data-target="faq"      aria-label="Dúvidas"><span class="chapter-dot"></span></a>
+    </nav>
   </div>
 </header>
 
