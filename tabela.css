@@ -93,11 +93,11 @@ html, body { height: 100%; }
     radial-gradient(ellipse at 20% 0%, var(--brand-green-50) 0%, transparent 55%),
     radial-gradient(ellipse at 100% 100%, var(--brand-red-50) 0%, transparent 50%),
     var(--offwhite);
-  padding: 56px 56px 44px;
+  padding: 56px 36px 44px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 32px;
   position: relative;
   overflow: hidden;
   font-family: var(--font-body);
@@ -125,7 +125,7 @@ html, body { height: 100%; }
 .tb-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 18px;
+  gap: 16px;
   flex: 1;
   align-items: stretch;
 }
@@ -267,18 +267,21 @@ html, body { height: 100%; }
 .tb-item-off { color: var(--stone-500); }
 .tb-item-off s { text-decoration: line-through; text-decoration-color: var(--stone-400); }
 
-/* ---- Caixa do preço — ancorada no rodapé do cartão e centralizada ---- */
+/* ---- Caixa do preço — altura fixa pra alinhar linhas e preços nos 3 cartões ---- */
 .tb-precobox {
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 20px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  align-items: center;     /* centraliza o bloco do preço */
-  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 170px;       /* mesma altura nos 3 cartões pra alinhar linhas e preços */
+  box-sizing: border-box;
 }
 
-/* Preço com hierarquia: prefixo+moeda menores que o número */
+/* Preço — só "um pouco maior" que o título (32px) */
 .tb-preco {
   display: flex;
   align-items: flex-end;
@@ -289,38 +292,38 @@ html, body { height: 100%; }
 }
 .tb-preco-prefix {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 22px;
   font-weight: var(--w-bold);
   letter-spacing: -0.01em;
-  margin-bottom: 7px;
+  margin-bottom: 4px;
 }
 .tb-preco-cur {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: var(--w-extra);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .tb-preco-num {
   font-family: var(--font-display);
-  font-size: 76px;
+  font-size: 40px;
   font-weight: var(--w-extra);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .tb-recorrencia {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: var(--w-semi);
   color: var(--stone-700);
   line-height: 1.3;
-  max-width: 250px;
+  max-width: 260px;
 }
 .tb-subpreco {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--fg-muted);
   margin: 0;
 }

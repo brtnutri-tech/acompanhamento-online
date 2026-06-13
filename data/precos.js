@@ -28,6 +28,7 @@ window.PRECOS_TABELA = {
     titulo: 'Sessão de Direcionamento',
     subtitulo: 'Videochamada com o nutri por 1 hora',
     preco: 'R$500',
+    recorrencia: '1x no cartão ou Pix',
     subPreco: '',
     itens: [
       'Análise completa do seu caso na sessão de 1 hora',
@@ -91,7 +92,7 @@ window.PRECOS_TABELA = {
   // Linha 1: texto principal. Linha 2: nota menor embaixo.
   // ============================================================
   rodape: {
-    linha1: 'Acompanhamento premium para quem já cansou de recomeçar sozinho.',
+    linha1: 'Acompanhamento online sustentável para quem já cansou de recomeçar sozinho.',
     linha2: 'Tabela vigente até julho/2026'
   }
 
