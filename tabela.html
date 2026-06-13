@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>Tabela de preços — uso interno</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="design-system/colors_and_type.css" />
+  <link rel="stylesheet" href="tabela.css?v=1" />
+
+  <script src="https://unpkg.com/html-to-image@1.11.13/dist/html-to-image.js"></script>
+</head>
+<body class="tabela-body">
+
+  <header class="tb-toolbar">
+    <div class="tb-toolbar-inner">
+      <span class="tb-toolbar-label">Tabela de preços · uso interno</span>
+      <button type="button" class="tb-download" id="tb-download" aria-label="Baixar como JPEG">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Baixar como JPEG</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="tb-stage">
+    <div class="tb-stage-scaler" id="tb-stage-scaler">
+
+      <!-- ESSE É O ELEMENTO QUE VAI VIRAR A IMAGEM 1080x1350 -->
+      <article class="tb-frame" id="tb-frame" aria-label="Tabela de preços Diogo Brito">
+
+        <header class="tb-header">
+          <img class="tb-wordmark" src="design-system/assets/wordmark.svg" alt="Diogo Brito Nutricionista" />
+          <p class="tb-eyebrow">Acompanhamento online</p>
+        </header>
+
+        <section class="tb-cards" id="tb-cards">
+          <!-- cartões renderizados pelo JS -->
+        </section>
+
+        <footer class="tb-footer" id="tb-footer">
+          <!-- rodapé renderizado pelo JS -->
+        </footer>
+
+      </article>
+      <!-- FIM DO FRAME CAPTURADO -->
+
+    </div>
+  </main>
+
+  <script src="data/precos.js?v=1"></script>
+  <script src="tabela.js?v=1"></script>
+</body>
+</html>

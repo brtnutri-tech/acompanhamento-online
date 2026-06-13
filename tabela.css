@@ -1,0 +1,308 @@
+/* ============================================================
+   Tabela de preços · uso interno · Diogo Brito
+   Peça 1080x1350 (4:5, WhatsApp).
+   Cartões: Consultoria (neutro) · Consistência (vermelho) · Essencial (verde).
+   ============================================================ */
+
+html, body { height: 100%; }
+.tabela-body {
+  margin: 0;
+  background: var(--stone-50);
+  color: var(--fg);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Toolbar (não entra na imagem) ---- */
+.tb-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+.tb-toolbar-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tb-toolbar-label {
+  font-size: var(--fs-sm);
+  color: var(--fg-muted);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--tracking-wide);
+}
+.tb-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand-green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-pill);
+  padding: 10px 18px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--w-semi);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+.tb-download:hover { background: var(--brand-green-700); }
+.tb-download:active { transform: translateY(1px); }
+.tb-download.is-busy { opacity: 0.7; cursor: progress; }
+
+/* ---- Stage (área que segura o frame escalado) ---- */
+.tb-stage {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px;
+  overflow: auto;
+}
+.tb-stage-scaler {
+  position: relative;
+  flex-shrink: 0;
+  /* width/height visuais setados pelo JS conforme a tela */
+}
+.tb-stage-scaler > .tb-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  /* transform: scale(s) aplicado pelo JS */
+}
+
+/* ============================================================
+   FRAME 1080x1350 (peça que vira imagem)
+   ============================================================ */
+.tb-frame {
+  width: 1080px;
+  height: 1350px;
+  background:
+    radial-gradient(ellipse at 20% 0%, var(--brand-green-50) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, var(--brand-red-50) 0%, transparent 50%),
+    var(--offwhite);
+  padding: 64px 64px 56px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--fg);
+}
+
+.tb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.tb-wordmark {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+.tb-eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--w-semi);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+
+/* ---- Cards grid ---- */
+.tb-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+  flex: 1;
+  align-items: center;
+}
+
+.tb-card {
+  position: relative;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 36px 26px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Variante: NEUTRA (Consultoria) */
+.tb-card--neutra {
+  border-color: var(--stone-200);
+}
+.tb-card--neutra .tb-tag { color: var(--stone-600); }
+.tb-card--neutra .tb-title { color: var(--stone-900); }
+.tb-card--neutra .tb-preco { color: var(--stone-900); }
+.tb-card--neutra .tb-check { color: var(--stone-600); }
+
+/* Variante: CONSISTÊNCIA (vermelho-vinho) */
+.tb-card--consistencia {
+  border-color: var(--brand-red);
+  border-width: 2.5px;
+  background: linear-gradient(180deg, var(--brand-red-50) 0%, var(--white) 25%);
+  box-shadow: var(--shadow-md);
+}
+.tb-card--consistencia .tb-tag { color: var(--brand-red); }
+.tb-card--consistencia .tb-title { color: var(--brand-red-700); }
+.tb-card--consistencia .tb-preco { color: var(--brand-red); }
+.tb-card--consistencia .tb-check { color: var(--brand-red); }
+
+/* Variante: ESSENCIAL (verde-oliva) */
+.tb-card--essencial {
+  border-color: var(--brand-green);
+  border-width: 2px;
+  background: linear-gradient(180deg, var(--brand-green-50) 0%, var(--white) 25%);
+}
+.tb-card--essencial .tb-tag { color: var(--brand-green-700); }
+.tb-card--essencial .tb-title { color: var(--brand-green-800); }
+.tb-card--essencial .tb-preco { color: var(--brand-green-700); }
+.tb-card--essencial .tb-check { color: var(--brand-green); }
+
+/* ---- Selo MAIS ESCOLHIDO ---- */
+.tb-selo {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brand-red);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.18em;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+}
+
+/* ---- Tag superior ---- */
+.tb-tag {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---- Título e subtítulo ---- */
+.tb-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: var(--w-bold);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+  min-height: 66px;
+}
+.tb-subtitulo {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--fg-muted);
+  line-height: 1.45;
+  margin: 0;
+  min-height: 60px;
+}
+
+/* ---- Caixa do preço ---- */
+.tb-precobox {
+  margin: 10px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 78px;
+}
+.tb-preco {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: var(--w-extra);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+.tb-subpreco {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+/* ---- Itens ---- */
+.tb-itens {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.4;
+  color: var(--stone-800);
+}
+.tb-item-icon {
+  flex: 0 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.tb-check { width: 20px; height: 20px; }
+.tb-no { width: 20px; height: 20px; color: var(--stone-400); }
+.tb-item-text { flex: 1; }
+
+.tb-item-off { color: var(--stone-500); }
+.tb-item-off s { text-decoration: line-through; text-decoration-color: var(--stone-400); }
+
+/* ---- Rodapé da peça ---- */
+.tb-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--w-medium);
+  color: var(--fg-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* ============================================================
+   Responsivo da TOOLBAR (só do que o usuário vê na tela,
+   o frame em si nunca muda — sempre 1080x1350 pra captura).
+   ============================================================ */
+@media (max-width: 480px) {
+  .tb-toolbar-label { display: none; }
+  .tb-download { padding: 8px 14px; font-size: 13px; }
+}
