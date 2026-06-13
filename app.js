@@ -22,16 +22,12 @@
     els.forEach(function (el) { io.observe(el); });
   })();
 
-  /* ---- Mapa da jornada — sanfona + estrada que preenche no scroll ---- */
+  /* ---- Mapa da jornada — só sanfona (1 aberta por vez) ---- */
   (function () {
     var wrap = document.getElementById('journey-wrap');
     if (!wrap) return;
     var steps = Array.prototype.slice.call(wrap.querySelectorAll('[data-jstep]'));
     if (!steps.length) return;
-    var rail = wrap.querySelector('.journey-rail');
-    var fill = wrap.querySelector('.journey-rail-fill');
-    var nums = steps.map(function (s) { return s.querySelector('.jstep-num'); });
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function panelOf(step) { return step.querySelector('.jstep-panel'); }
     function triggerOf(step) { return step.querySelector('.jstep-trigger'); }
@@ -49,34 +45,6 @@
       if (t) t.setAttribute('aria-expanded', 'true');
     }
 
-    // Posiciona o trilho pra começar no 1º nó e terminar no último
-    function computeRail() {
-      if (!rail || !nums[0] || !nums[nums.length - 1]) return;
-      var w = wrap.getBoundingClientRect();
-      var f = nums[0].getBoundingClientRect();
-      var l = nums[nums.length - 1].getBoundingClientRect();
-      var top = (f.top - w.top) + f.height / 2;
-      var bottom = (l.top - w.top) + l.height / 2;
-      rail.style.top = top + 'px';
-      rail.style.height = Math.max(0, bottom - top) + 'px';
-    }
-
-    // Preenche o trilho conforme o scroll passa pelas paradas
-    function updateProgress() {
-      if (!fill) return;
-      var anchor = window.innerHeight * 0.52;
-      var rects = nums.map(function (n) { return n.getBoundingClientRect(); });
-      var firstC = rects[0].top + rects[0].height / 2;
-      var lastC = rects[rects.length - 1].top + rects[rects.length - 1].height / 2;
-      var len = lastC - firstC;
-      var prog = len > 0 ? Math.max(0, Math.min(1, (anchor - firstC) / len)) : 0;
-      fill.style.transform = 'scaleY(' + prog + ')';
-      rects.forEach(function (r, i) {
-        var c = r.top + r.height / 2;
-        nums[i].classList.toggle('reached', c <= anchor + 0.5);
-      });
-    }
-
     steps.forEach(function (step) {
       var t = triggerOf(step);
       if (t) {
@@ -84,42 +52,16 @@
           var isOpen = step.classList.contains('open');
           steps.forEach(close);
           if (!isOpen) open(step);
-          computeRail();
-          if (!reduce) updateProgress();
-        });
-      }
-      var p = panelOf(step);
-      if (p) {
-        p.addEventListener('transitionend', function (e) {
-          if (e.propertyName === 'max-height') { computeRail(); if (!reduce) updateProgress(); }
         });
       }
     });
 
-    // Abre a primeira parada por padrão (mostra como funciona)
     open(steps[0]);
-    computeRail();
-
-    if (reduce) {
-      if (fill) fill.style.transform = 'scaleY(1)';
-    } else {
-      var ticking = false;
-      var onScroll = function () {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () { ticking = false; updateProgress(); });
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      updateProgress();
-    }
 
     window.addEventListener('resize', function () {
       var openStep = document.querySelector('.jstep.open');
       if (openStep) { var p = panelOf(openStep); if (p) p.style.maxHeight = p.scrollHeight + 'px'; }
-      computeRail();
-      if (!reduce) updateProgress();
     });
-    window.addEventListener('load', function () { computeRail(); if (!reduce) updateProgress(); });
   })();
 
   /* ---- Quiz (lógica original da página online) ---- */

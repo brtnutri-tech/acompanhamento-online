@@ -150,27 +150,17 @@ body {
   margin: 40px auto 0;
   padding: 0 24px;
 }
-/* trilho vertical (estrada) — base neutra + preenchimento verde no scroll.
-   top/height são recalculados via JS pra casar com o 1º e o último nó. */
-.journey-rail {
+/* trilho vertical (estrada) — linha fixa atrás dos nós */
+.journey-wrap::before {
+  content: "";
   position: absolute;
   left: 48px;
   top: 34px;
+  bottom: 34px;
   width: 3px;
   border-radius: 3px;
-  background: var(--stone-200);
-  overflow: hidden;
+  background: var(--brand-green-200);
   z-index: 1;
-}
-.journey-rail-fill {
-  position: absolute;
-  inset: 0;
-  transform: scaleY(0);
-  transform-origin: top center;
-  border-radius: 3px;
-  background: linear-gradient(180deg, var(--brand-green-400) 0%, var(--brand-green) 55%, var(--brand-green-700) 100%);
-  transition: transform 140ms linear;
-  will-change: transform;
 }
 
 .jstep { position: relative; }
@@ -215,10 +205,6 @@ body {
 .jstep-final .jstep-num { border-color: var(--brand-red); color: var(--brand-red); }
 .jstep-final.open .jstep-num { background: var(--brand-red); color: #fff; box-shadow: 0 0 0 4px rgba(154, 35, 35, 0.16); }
 
-/* Nó "aceso" — quando o preenchimento da estrada já passou por ele */
-.jstep-num.reached { background: var(--brand-green); color: #fff; border-color: var(--brand-green); }
-.jstep-final .jstep-num.reached { background: var(--brand-red); color: #fff; border-color: var(--brand-red); }
-
 .jstep-title {
   flex: 1; min-width: 0;
   font-family: var(--font-display);
@@ -242,7 +228,7 @@ body {
 .jstep-panel-inner p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--fg-muted); text-wrap: pretty; }
 
 @media (min-width: 640px) {
-  .journey-rail { left: 52px; }
+  .journey-wrap::before { left: 52px; }
   .jstep-trigger { padding: 18px 8px; }
   .jstep-title { font-size: 19px; }
   .jstep-panel-inner { padding-left: 68px; font-size: 16px; }
