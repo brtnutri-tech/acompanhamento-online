@@ -276,4 +276,110 @@
     });
   })();
 
+
+
+  /* ──── MODAL SHAPED (relatório de avaliação) ──── */
+  // SHAPED GALLERY MODAL — abertura, swipe, navegação, foco, ESC, teclado
+    (function(){
+      const modal = document.getElementById('shaped-modal');
+      if (!modal) return;
+  
+      const slides = modal.querySelector('#shaped-slides');
+      const slideEls = modal.querySelectorAll('.shaped-slide');
+      const dots = modal.querySelectorAll('.shaped-dot');
+      const prevBtn = modal.querySelector('.shaped-arrow-prev');
+      const nextBtn = modal.querySelector('.shaped-arrow-next');
+      const closeBtn = modal.querySelector('.shaped-modal-close');
+      const hint = modal.querySelector('#shaped-hint');
+      const triggers = document.querySelectorAll('[data-shaped-trigger]');
+  
+      const total = slideEls.length;
+      let current = 0;
+      let lastFocused = null;
+      let hintHidden = false;
+  
+      const goTo = (idx, opts) => {
+        opts = opts || {};
+        current = Math.max(0, Math.min(total - 1, idx));
+        slides.style.transform = 'translateX(' + (-current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        if (prevBtn) prevBtn.disabled = current === 0;
+        if (nextBtn) nextBtn.disabled = current === total - 1;
+        if (opts.userAction && !hintHidden && hint) {
+          hint.classList.add('is-hidden');
+          hintHidden = true;
+        }
+      };
+  
+      const next = () => goTo(current + 1, { userAction: true });
+      const prev = () => goTo(current - 1, { userAction: true });
+  
+      if (nextBtn) nextBtn.addEventListener('click', next);
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+  
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.slide, 10);
+          goTo(idx, { userAction: true });
+        });
+      });
+  
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const SWIPE_THRESHOLD = 50;
+  
+      slides.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+  
+      slides.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+        if (diff > 0 && current < total - 1) next();
+        else if (diff < 0 && current > 0) prev();
+      }, { passive: true });
+  
+      const onKeydown = (e) => {
+        if (modal.hidden) return;
+        if (e.key === 'ArrowRight') next();
+        else if (e.key === 'ArrowLeft') prev();
+        else if (e.key === 'Escape') close();
+      };
+  
+      const open = (trigger) => {
+        lastFocused = trigger || document.activeElement;
+        modal.hidden = false;
+        modal.offsetHeight;
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        goTo(0);
+        hintHidden = false;
+        if (hint) hint.classList.remove('is-hidden');
+        if (closeBtn) closeBtn.focus();
+        document.addEventListener('keydown', onKeydown);
+      };
+  
+      const close = () => {
+        modal.classList.remove('is-open');
+        document.removeEventListener('keydown', onKeydown);
+        setTimeout(() => {
+          modal.hidden = true;
+          document.body.style.overflow = '';
+          if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+          }
+        }, 200);
+      };
+  
+      if (closeBtn) closeBtn.addEventListener('click', close);
+  
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          open(trigger);
+        });
+      });
+    })();
+
 })();

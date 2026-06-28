@@ -479,6 +479,14 @@
         <button class="faq-q" aria-expanded="false">Como é a avaliação física se tudo é online?<span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Trabalho com o Shaped, um sistema que usa inteligência artificial pra avaliação física à distância. Você recebe orientações em vídeo de como fazer cada medida e fotografar. O sistema analisa as imagens, a minha equipe interpreta o resultado e monta seu mapa corporal, que vira ponto de partida pro acompanhamento. Você faz no seu tempo, da sua casa, sem precisar deslocar.</p>
+          <button type="button" class="shaped-gallery-btn" data-shaped-trigger>
+            <svg class="shaped-btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="2" y="3" width="12" height="10" rx="1.5"/>
+              <path d="M2 10l3-3 3 3 2-2 4 4"/>
+              <circle cx="11" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+            Ver um exemplo do relatório
+          </button>
         </div></div>
       </div>
       <div class="faq-item">
@@ -505,6 +513,41 @@
   </svg>
 </a>
 
-<script src="app.js?v=6"></script>
+<!-- ════════════════════ 08 · MODAL SHAPED (relatório de avaliação) ════════════════════ -->
+<div class="shaped-modal" id="shaped-modal" role="dialog" aria-modal="true" aria-label="Exemplo de relatório Shaped" hidden>
+  <button type="button" class="shaped-modal-close" aria-label="Fechar">×</button>
+
+  <div class="shaped-modal-stage">
+    <div class="shaped-slides" id="shaped-slides">
+      <div class="shaped-slide">
+        <img src="https://i.ibb.co/4RW6Pg93/Shaped1.png" alt="Página 1 do relatório Shaped, composição corporal" loading="lazy" decoding="async">
+      </div>
+      <div class="shaped-slide">
+        <img src="https://i.ibb.co/270mmYrJ/Shaped2.png" alt="Página 2 do relatório Shaped, mapa corporal e Shaped Score" loading="lazy" decoding="async">
+      </div>
+      <div class="shaped-slide">
+        <img src="https://i.ibb.co/1Y3bjrX7/Shaped3.png" alt="Página 3 do relatório Shaped, histórico de avaliações" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <button type="button" class="shaped-arrow shaped-arrow-prev" aria-label="Página anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="shaped-arrow shaped-arrow-next" aria-label="Próxima página">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="shaped-modal-bottom">
+    <div class="shaped-hint" id="shaped-hint">arraste pros lados</div>
+    <div class="shaped-dots" role="tablist">
+      <button type="button" class="shaped-dot active" data-slide="0" aria-label="Página 1"></button>
+      <button type="button" class="shaped-dot" data-slide="1" aria-label="Página 2"></button>
+      <button type="button" class="shaped-dot" data-slide="2" aria-label="Página 3"></button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js?v=7"></script>
 </body>
 </html>
